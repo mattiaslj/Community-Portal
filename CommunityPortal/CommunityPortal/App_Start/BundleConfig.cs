@@ -17,8 +17,8 @@ namespace CommunityPortal
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angularScripts").Include(
-                    "~/AngularScripts/app.js",
-                    "~/AngularScripts/newsFeedController.js"
+                    "~/SiteScripts/app.js",
+                    "~/SiteScripts/newsFeedController.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

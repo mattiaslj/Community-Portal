@@ -1,3 +1,27 @@
 ﻿
 
-<h1>angular exp = {{vm.test}}</h1>
+<h1>News Feed</h1>
+
+
+<div class="container">
+    <div ng-repeat="event in vm.events | limitTo: vm.numberOfEventsToDisplay">
+        <ul class="list-group">
+            <li class="list-group-item"><h3>{{event.Title}}</h3></li>
+            <li class="list-group-item"><p>{{event.Body}}</p></li>
+            <li class="list-group-item"><p>{{event.PostTime}}</p></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div ng-form="newEventForm" id="eventForm">
+        <label>Title</label>
+        <input class="form-control" ng-model="vm.title" type="text" maxlength="100" required />
+
+        <label>Event information</label>
+        <textarea rows="10" cols="100" class="form-control" ng-model="vm.body" maxlength="2000" required />
+        <a href="#/newsFeed">
+            <input type="submit" class="btn btn-sm" value="submit" ng-click="vm.submitForm()" />
+        </a>
+    </div>
+</div>
