@@ -7,7 +7,7 @@
 <div class="container" ng-show="vm.showEvents">
     <button ng-click="vm.addEvent()" ng-show="vm.showEvents">Add event</button>
     <div>
-        <ul class="list-group"  ng-repeat="event in vm.events">
+        <ul class="list-group"  ng-repeat="event in events">
             <li class="list-group-item"><h3>{{event.Title}}</h3></li>
             <li class="list-group-item"><p>{{event.Body}}</p></li>
             <li class="list-group-item"><p>{{event.PostTime}}</p></li>
@@ -15,6 +15,7 @@
                 <button ng-click="vm.editEvent(event)">edit</button>
             </li>
         </ul>
+        <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
     </div>
 </div>
 

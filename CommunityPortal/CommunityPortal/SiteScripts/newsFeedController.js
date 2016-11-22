@@ -27,6 +27,28 @@
                 vm.events[i].PostTime = new Date(parseInt(vm.events[i].PostTime.substr(6)));
             }
             vm.events.reverse();
+
+            //------------- Pagination ------------------
+            $scope.totalItems = vm.events.length;
+            console.log("totalItems = " + $scope.totalItems)
+            $scope.currentPage = 1;
+            $scope.itemsPerPage = 1;
+
+            $scope.$watch("currentPage", function () {
+                console.log("currentPage = " + $scope.currentPage)
+                setPagingData($scope.currentPage);
+            });
+
+            function setPagingData(page) {
+                var pagedData = vm.events.slice(
+                  (page - 1) * $scope.itemsPerPage,
+                  page * $scope.itemsPerPage
+                );
+
+                $scope.events = pagedData;
+            }
+            //------------------------------------------
+
         });
 
         // setup for addEvent form,

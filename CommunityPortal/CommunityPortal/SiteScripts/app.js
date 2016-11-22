@@ -3,7 +3,7 @@
 (function () {
     'use strict'
 
-    var app = angular.module("communityPortal", ['ngRoute']);
+    var app = angular.module("communityPortal", ['ngRoute', 'ui.bootstrap']);
 
     app.config(function ($routeProvider) {
         $routeProvider
