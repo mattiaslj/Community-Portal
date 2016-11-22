@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace CommunityPortal.Models
 {
-    public class Event
+    public class ForumPost
     {
         [Key]
         public int Id { get; set; }
 
-        [StringLength(100)]
         [Required]
-        public string Title { get; set; }
-
         [StringLength(5000)]
-        [Required]
         public string Body { get; set; }
 
         [Required]
+        public ApplicationUser User { get; set; }
+
+        [Required]
+        public ForumThread Thread { get; set; }
+
+        [Required]
         public DateTime PostTime { get; set; }
-        
     }
 }

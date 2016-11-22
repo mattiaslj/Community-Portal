@@ -33,6 +33,7 @@ namespace CommunityPortal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/simplex-bootstrap.min.css",
                       "~/Content/site.css"));
         }
     }
