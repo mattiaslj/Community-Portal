@@ -7,39 +7,92 @@ namespace CommunityPortal.Controllers
     public class EventController : Controller
     {
 
-        ApplicationDbContext _db = new ApplicationDbContext();
+        //ApplicationDbContext _db = new ApplicationDbContext();
 
         public JsonResult GetEvents()
         {
-            if (_db.Events != null)
+            using (var _db = new ApplicationDbContext())
             {
-                var events = _db.Events.ToList();
-                return Json(events, JsonRequestBehavior.AllowGet);
+                if (_db.Events != null)
+                {
+                    var events = _db.Events.ToList();
+                    return Json(events, JsonRequestBehavior.AllowGet);
+                }
             }
             return Json("No events in database", JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetEvent(int Id)
         {
-            var evnt = _db.Events.FirstOrDefault(e => e.Id == Id);
-
-            if (evnt != null)
+            using (var _db = new ApplicationDbContext())
             {
-                return Json(evnt);
+                var evnt = _db.Events.FirstOrDefault(e => e.Id == Id);
+                if (evnt != null)
+                {
+                    return Json(evnt);
+                }
             }
             return Json("");
         }
 
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
         public JsonResult AddEvent(Event newEvent)
         {
-            if (ModelState.IsValid)
+            using (var _db = new ApplicationDbContext())
             {
-                _db.Events.Add(newEvent);
-                _db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    // used when user edit a post
+                    if (newEvent.Id != 0)
+                    {
+                        var evnt = _db.Events.FirstOrDefault(e => e.Id == newEvent.Id);
+                        if (evnt != null)
+                        {
+                            evnt.Title = newEvent.Title;
+                            evnt.Body = newEvent.Body;
+                            evnt.PostTime = newEvent.PostTime;
+                            _db.SaveChanges();
+                        }
+                    }
+                    else
+                    {   // new post to be added
+                        _db.Events.Add(newEvent);
+                        _db.SaveChanges();
+                    }
+                }
             }
             return Json("");
         }
+
+        //[Authorize(Roles = "Admin")]
+        [HttpPost]
+        public JsonResult DeleteEvent(string id)
+        {
+            using (var _db = new ApplicationDbContext())
+            {
+                int result;
+                int.TryParse(id, out result);
+                var evnt = _db.Events.FirstOrDefault(e => e.Id == result);
+                if (evnt != null)
+                {
+                    _db.Events.Remove(evnt);
+                    _db.SaveChanges();
+                }
+            }
+            return Json("");
+        }
+
+        //[Authorize(Roles = "Admin")]
+        //public JsonResult GetRole()
+        //{
+        //    using (var _db = new ApplicationDbContext())
+        //    {
+        //        string role = "not admin";
+        //        if (User.IsInRole("Admin"))
+        //            role = "Admin";
+        //        return Json(role, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
     }
 }

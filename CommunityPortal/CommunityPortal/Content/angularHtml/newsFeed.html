@@ -3,17 +3,24 @@
 <h1>News Feed</h1>
 
 
-<div class="container">
-    <div ng-repeat="event in vm.events | limitTo: vm.numberOfEventsToDisplay">
-        <ul class="list-group">
+<!--    Show Events     -->
+<div class="container" ng-show="vm.showEvents">
+    <button ng-click="vm.addEvent()" ng-show="vm.showEvents">Add event</button>
+    <div>
+        <ul class="list-group"  ng-repeat="event in vm.events">
             <li class="list-group-item"><h3>{{event.Title}}</h3></li>
             <li class="list-group-item"><p>{{event.Body}}</p></li>
             <li class="list-group-item"><p>{{event.PostTime}}</p></li>
+            <li class="list-group-item"><button ng-click="vm.deleteEvent(event)" class="btn btn-sm btn-danger">Delete</button>
+                <button ng-click="vm.editEvent(event)">edit</button>
+            </li>
         </ul>
     </div>
 </div>
 
-<div class="container">
+<!--    Add event Form      -->
+<div class="container" ng-show="!vm.showEvents">
+    <button ng-click="vm.showEvents = !vm.showEvents" ng-show="!vm.showEvents">Show Events</button>
     <div ng-form="newEventForm" id="eventForm">
         <label>Title</label>
         <input class="form-control" ng-model="vm.title" type="text" maxlength="100" required />

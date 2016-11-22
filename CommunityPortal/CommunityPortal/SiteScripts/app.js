@@ -13,4 +13,5 @@
             })
             .otherwise({ redirectTo: '/newsFeed' });
     });
+
 }());
