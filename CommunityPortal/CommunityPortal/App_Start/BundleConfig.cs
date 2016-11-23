@@ -19,7 +19,10 @@ namespace CommunityPortal
 
             bundles.Add(new ScriptBundle("~/bundles/angularScripts").Include(
                     "~/SiteScripts/app.js",
-                    "~/SiteScripts/newsFeedController.js"
+                    "~/SiteScripts/newsFeedController.js",
+                    "~/SiteScripts/forumController.js",
+                    "~/SiteScripts/forumThread.js",
+                    "~/SiteScripts/authentication.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

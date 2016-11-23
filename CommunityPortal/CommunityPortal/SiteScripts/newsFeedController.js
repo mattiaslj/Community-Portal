@@ -30,12 +30,10 @@
 
             //------------- Pagination ------------------
             $scope.totalItems = vm.events.length;
-            console.log("totalItems = " + $scope.totalItems)
             $scope.currentPage = 1;
             $scope.itemsPerPage = 1;
 
             $scope.$watch("currentPage", function () {
-                console.log("currentPage = " + $scope.currentPage)
                 setPagingData($scope.currentPage);
             });
 

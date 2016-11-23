@@ -9,6 +9,7 @@
     <button ng-click="vm.addEvent()" ng-show="vm.showEvents">Add event</button>
     <hr />
     <div>
+        <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
         <ul class="list-group"  ng-repeat="event in events">
             <li class="list-group-item"><h3>{{event.Title}}</h3></li>
             <li class="list-group-item"><p>{{event.Body}}</p></li>
@@ -17,19 +18,21 @@
                 <button ng-click="vm.editEvent(event)" class="btn btn-sm btn-success">edit</button>
             </li>
         </ul>
-        <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
+        
     </div>
 </div>
 
 <!--    Add event Form      -->
 <div class="container" ng-show="!vm.showEvents">
+    <hr />
     <button ng-click="vm.showEvents = !vm.showEvents" ng-show="!vm.showEvents">Show Events</button>
+    <hr />
     <div ng-form="newEventForm" id="eventForm">
         <label>Title</label>
         <input class="form-control" ng-model="vm.title" type="text" maxlength="100" required />
 
         <label>Event information</label>
-        <textarea rows="10" cols="100" class="form-control" ng-model="vm.body" maxlength="2000" required />
+        <textarea rows="10" cols="100" class="form-control" ng-model="vm.body" maxlength="5000" required />
         <a href="#/newsFeed">
             <input type="submit" class="btn btn-sm" value="submit" ng-click="vm.submitForm()" />
         </a>

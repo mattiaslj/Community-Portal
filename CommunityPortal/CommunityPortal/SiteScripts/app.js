@@ -11,6 +11,10 @@
                 templateUrl: 'Content/angularHtml/newsFeed.html',
                 controller: 'newsFeedController as vm'
             })
+            .when("/forum", {
+                templateUrl: "Content/angularHtml/forum.html",
+                controller: "forumController as vm"
+            })
             .otherwise({ redirectTo: '/newsFeed' });
     });
 
