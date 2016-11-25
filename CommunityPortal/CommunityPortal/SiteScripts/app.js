@@ -15,6 +15,10 @@
                 templateUrl: "Content/angularHtml/forum.html",
                 controller: "forumController as vm"
             })
+            .when("/forum/:threadTitle/:threadId", {
+                templateUrl: "Content/angularHtml/thread.html",
+                controller: "threadController as vm"
+            })
             .otherwise({ redirectTo: '/newsFeed' });
     });
 

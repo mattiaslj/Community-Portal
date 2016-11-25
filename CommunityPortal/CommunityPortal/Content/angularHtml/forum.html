@@ -6,18 +6,20 @@
     <hr />
     <button ng-click="vm.showCreateThread = !vm.showCreateThread" class="btn btn-group-lg">Create Thread</button>
     <hr />
+
+    <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Title</th>
             <th>User</th>
             <th>PostTime</th>
         </tr>
+        
         <tr ng-repeat="thread in forumThreads">
-            <td>{{thread.Title}}</td>
+            <td><a href="#/forum/:{{thread.Title}}/:{{thread.Id}}"> {{thread.Title}} </a></td>
             <td>{{thread.User.UserName}}</td>
             <td>{{thread.PostTime}}</td>
         </tr>
-        <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
     </table>
 
 </div>
@@ -38,6 +40,6 @@
     </div>
 </div>
 
-<!--<hr />
+<hr />
 <button ng-click="vm.test()" class="btn btn-group-lg">----Create Thread----</button>
-<hr />-->
+<hr />

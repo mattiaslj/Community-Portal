@@ -3,7 +3,7 @@
 
     var app = angular.module('communityPortal');
 
-    app.controller('forumController', function (forumThread, authentication, $scope, $route) {
+    app.controller('forumController', function (forumThread, authentication, forumPost, $scope, $route) {
 
         var vm = this;
         $scope.forumThreads = [];
@@ -39,6 +39,7 @@
                    });
 
 
+        // Create thread and post
         vm.createThread = function () {
             vm.showCreateThread = false;
 
@@ -51,13 +52,21 @@
                                   Title: vm.title,
                                   PostTime: new Date()
                               }
-                              forumThread.addThread(thread, vm.username);
+                              forumThread.addThread(thread, vm.username).then(function (data) {
+                                  //------ Send Post to database -----------------
+                                  var threadId = data;
+                                  console.log('addThread response data')
+                                  console.log(data);
 
-                              //------ Send Post to database here -----------------
+                                  var post = {
+                                      Body : vm.body,
+                                      PostTime: new Date()
+                                  }
 
+                                  forumPost.addPost(post, data, vm.username);
+                                  // -----------------------------------------------------
 
-
-                              // -----------------------------------------------------
+                              })
                               $route.reload();
                           })
         }
@@ -66,6 +75,7 @@
 
 
         // lägger till forumThread till db
+        // used for testing
         vm.test = function () {
             vm.username = '';
             authentication.getCurrentUser()

@@ -53,7 +53,7 @@ namespace CommunityPortal.Controllers
                 {
                     _db.ForumThreads.Add(forumThread);
                     _db.SaveChanges();
-                    return Json("Success");
+                    return Json(forumThread.Id);
                 }
 
                 return Json("Couldnt add thread");

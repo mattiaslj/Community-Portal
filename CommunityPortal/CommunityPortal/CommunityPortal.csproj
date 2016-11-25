@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AngularAuthenticationController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\ForumPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
@@ -204,14 +205,17 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ForumPost.cs" />
+    <Compile Include="Models\ForumPostViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ForumThread.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\angularHtml\forum.html" />
+    <Content Include="Content\angularHtml\thread.html" />
     <Content Include="Content\simplex-bootstrap.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Scripts\angular-animate.js" />
@@ -989,6 +993,7 @@
     <Content Include="SiteScripts\app.js" />
     <Content Include="SiteScripts\authentication.js" />
     <Content Include="SiteScripts\forumController.js" />
+    <Content Include="SiteScripts\forumPost.js" />
     <Content Include="SiteScripts\forumThread.js" />
     <Content Include="SiteScripts\newsFeedController.js" />
     <Content Include="Content\bootstrap.css" />
@@ -1036,6 +1041,7 @@
     <Content Include="Content\angularHtml\newsFeed.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SiteScripts\threadController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1074,6 +1080,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\AngularAuthentication\" />
     <Folder Include="Views\Event\" />
+    <Folder Include="Views\ForumPost\" />
     <Folder Include="Views\Thread\" />
   </ItemGroup>
   <ItemGroup>
