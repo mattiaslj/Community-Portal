@@ -33,15 +33,15 @@
                 <tr class="row">
                     <td style="word-break:break-all" class="col-sm-3">
                         <img src="http://lorempixel.com/50/50/1" />
-                        <p>{{replyPost.PostTime}}</p>
+                        <p>{{post.PostTime}}</p>
                     </td>
                     <td style="word-break:break-all">
                         <div>
-                            <p id="postId_{{replyPost.Id}}">
-                                {{replyPost.Body}}
+                            <p id="postId_{{post.Id}}">
+                                {{post.Body}}
                             </p>
                             <hr />
-                            <button ng-click="vm.scrollToReply('postForm',replyPost.Id)" class="btn btn-sm">Reply</button>
+                            <button ng-click="vm.scrollToReply('postForm',post.Id)" class="btn btn-sm">Reply</button>
                         </div>
                     </td>
                 </tr>
