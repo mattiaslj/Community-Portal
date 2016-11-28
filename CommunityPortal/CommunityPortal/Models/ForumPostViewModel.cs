@@ -9,6 +9,6 @@ namespace CommunityPortal.Models
         public DateTime PostTime { get; set; }
         public int ThreadId { get; set; }
         public UserViewModel User { get; set; }
-
+        public int ReplyPostId { get; set; }
     }
 }

@@ -35,17 +35,43 @@ namespace CommunityPortal.Controllers
                                 pvm.Id = post.Id;
                                 pvm.PostTime = post.PostTime;
                                 pvm.ThreadId = post.Thread.Id;
-
                                 user.Email = post.User.Email;
                                 user.UserName = post.User.UserName;
                                 pvm.User = user;
+
+                                if (post.ReplyPostId != 0)
+                                {
+                                    pvm.ReplyPostId = post.ReplyPostId;
+                                }
 
                                 posts.Add(pvm);
                             }
                         }
                     }
                     if (posts.Count > 0)
-                    {
+                    {   // sort list by posts and replys
+                        for (int i = 0; i < posts.Count; i++)
+                        {
+                            if (posts[i].ReplyPostId != 0)
+                            {   // get parent post
+                                var parentPost = posts.FirstOrDefault(p => p.Id == posts[i].ReplyPostId);
+                                // get index of parent post
+                                var index = posts.IndexOf(parentPost);
+                                // save reply
+                                var temp = posts[i];
+                                // remove reply from postsList
+                                posts.Remove(posts[i]);
+                                // add reply to list again
+                                if (index + 1 > posts.Count)
+                                {
+                                    posts.Add(temp);
+                                }
+                                else
+                                {
+                                    posts.Insert(index + 1, temp);
+                                }
+                            }
+                        }
                         return Json(JsonConvert.SerializeObject(posts));
                     }
                 }

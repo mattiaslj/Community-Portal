@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201611221443132_AddedForumPostAndForumThreadAndUpdatedStringLengthForEventBody.Designer.cs">
       <DependentUpon>201611221443132_AddedForumPostAndForumThreadAndUpdatedStringLengthForEventBody.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611250821403_AddedReplyPostIdToForumPost.cs" />
+    <Compile Include="Migrations\201611250821403_AddedReplyPostIdToForumPost.Designer.cs">
+      <DependentUpon>201611250821403_AddedReplyPostIdToForumPost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -1042,6 +1046,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SiteScripts\threadController.js" />
+    <Content Include="ProjectPlan.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1108,6 +1113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611221443132_AddedForumPostAndForumThreadAndUpdatedStringLengthForEventBody.resx">
       <DependentUpon>201611221443132_AddedForumPostAndForumThreadAndUpdatedStringLengthForEventBody.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611250821403_AddedReplyPostIdToForumPost.resx">
+      <DependentUpon>201611250821403_AddedReplyPostIdToForumPost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -65,10 +65,11 @@
 
                                   forumPost.addPost(post, data, vm.username);
                                   // -----------------------------------------------------
-
+                                  $route.reload();
                               })
-                              $route.reload();
+                              
                           })
+            
         }
 
 

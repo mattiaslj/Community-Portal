@@ -20,5 +20,7 @@ namespace CommunityPortal.Models
 
         [Required]
         public DateTime PostTime { get; set; }
+
+        public int ReplyPostId { get; set; }
     }
 }

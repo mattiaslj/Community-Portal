@@ -76,10 +76,11 @@
                 method: 'POST',
                 url: 'Event/AddEvent',
                 data: vm.newEvent
+            }).then(function (data) {
+                $route.reload();
             })
-            $route.reload();
+            
         }
-
 
         // Delete Event
         vm.deleteEvent = function (event) {
@@ -87,10 +88,11 @@
                 method: 'POST',
                 url: 'Event/DeleteEvent',
                 data: event
+            }).then(function (data) {
+                $route.reload();
             })
-            $route.reload();
+            
         }
-
 
         // Edit Event
         vm.editEvent = function (evnt) {
@@ -101,10 +103,6 @@
         }
     });
 }());
-
-
-
-
 
 //Get user role
 //vm.isAdmin = function () {

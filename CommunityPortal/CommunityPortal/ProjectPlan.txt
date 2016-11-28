@@ -1,0 +1,13 @@
+﻿Vecka 1:
+  NewsFeed - CRUM - 3 dagar
+  Forum - Layout, create thread - 2 dagar
+  
+Vecka 2:
+  Forum: view, reply,quote - 3 dagar
+  UserManagement: create user, login, authorizations, admin(delete users, threads, posts, events) - 2 dagar
+  
+Vecka 3:
+  Add userpages, personal messages - 5 dagar
+  
+Vecka 4:
+  Bug and layout fixes

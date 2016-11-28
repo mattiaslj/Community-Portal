@@ -4,33 +4,58 @@
 
 
 <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
-<div ng-repeat="post in forumPosts" class="table-bordered">
-    <table class="table table-bordered">
-        <tbody>
-            <tr class="row">
-                <td style="word-break:break-all" class="col-sm-3">
-                    {{post.User.UserName}}
-                    <img src="http://lorempixel.com/200/200/1" />
-                    <p>{{post.PostTime}}</p>
-                </td>
-                <td style="word-break:break-all">
-                    <div>
-                        <p id="postId:{{post.Id}}">
-                            {{post.Body}}
-                        </p>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div ng-repeat="post in forumPosts">
+    <div ng-if="post.ReplyPostId == 0" >
+        <table class="table table-bordered" id="tableId_{{post.Id}}">
+            <tbody>
+                <tr class="row">
+                    <td style="word-break:break-all" class="col-sm-3">
+                        <p>{{post.User.UserName}}</p>
+                        <img src="http://lorempixel.com/50/50/1" />
+                        <p>{{post.PostTime}}</p>
+                    </td>
+                    <td style="word-break:break-all">
+                        <div>
+                            <p id="postId_{{post.Id}}">
+                                {{post.Body}}
+                            </p>
+                            <hr />
+                            <button ng-click="vm.scrollToReply('postForm',post.Id)" class="btn btn-sm">Reply</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="post.ReplyPostId != 0">
+        <table class="table table-bordered" style="margin-left:{{vm.getOffset(post)}}px" id="tableId_{{post.Id}}">
+            <tbody>
+                <tr class="row">
+                    <td style="word-break:break-all" class="col-sm-3">
+                        <img src="http://lorempixel.com/50/50/1" />
+                        <p>{{replyPost.PostTime}}</p>
+                    </td>
+                    <td style="word-break:break-all">
+                        <div>
+                            <p id="postId_{{replyPost.Id}}">
+                                {{replyPost.Body}}
+                            </p>
+                            <hr />
+                            <button ng-click="vm.scrollToReply('postForm',replyPost.Id)" class="btn btn-sm">Reply</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="container">
     <hr />
     <div ng-form="newPostForm" id="postForm">
         <label>Reply to thread</label>
-        <textarea rows="10" cols="100" class="form-control" ng-model="vm.body" maxlength="5000" required />
-        <a href="#/forum/:{{vm.threadTitle}}/:{{vm.id}}">
+        <textarea id="postTextArea" rows="8" class="form-control" ng-model="vm.body" maxlength="5000" required style="margin-right:0px;" />
+        <a href="#/forum/:{{vm.threadTitle}}/:{{vm.threadId}}">
             <input type="submit" class="btn btn-sm btn-success" value="submit" ng-click="vm.createPost()" />
         </a>
     </div>
