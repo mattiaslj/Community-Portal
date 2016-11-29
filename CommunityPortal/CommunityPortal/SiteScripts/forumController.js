@@ -71,26 +71,6 @@
                           })
             
         }
-
-
-
-
-        // lägger till forumThread till db
-        // used for testing
-        vm.test = function () {
-            vm.username = '';
-            authentication.getCurrentUser()
-                          .then(function (data) {
-                              vm.username = data;
-                              
-                              var thread = {
-                                  Title: 'Cheat cheat Title',
-                                  PostTime: new Date()
-                              }
-                              forumThread.addThread(thread, vm.username);
-                              $route.reload();
-                          })
-        }
     })
 
 }());

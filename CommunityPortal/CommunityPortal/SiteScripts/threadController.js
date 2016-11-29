@@ -15,15 +15,14 @@
         vm.threadTitle = threadTitle.replace(':', '');
 
         //Get all threads and add pagination
-        vm.forumPosts = {};
-        console.log($routeParams.threadId)
+        vm.forumPosts = [];
         forumPost.getPosts(vm.threadId)
                    .then(function (data) {
                        vm.forumPosts = JSON.parse(data);
                        //------------- Pagination ------------------
                        $scope.totalItems = vm.forumPosts.length;
                        $scope.currentPage = 1;
-                       $scope.itemsPerPage = 25;
+                       $scope.itemsPerPage = 10;
 
                        $scope.$watch("currentPage", function () {
                            setPagingData($scope.currentPage);
@@ -39,7 +38,6 @@
                        }
                        //------------------------------------------
                    });
-
 
         vm.createPost = function () {
             vm.username = '';
@@ -57,21 +55,34 @@
                           })
         }
 
-        // ser inte bra ut...
-        vm.quote = function (id) {
-            var quote = $("#postId_" + id).text();
-            var reply = '<i>' + quote + '</i>';
-            $("#postTextArea").text(reply.trim());
+        vm.quote = function (ReplyPostId, postId, user) {
+            if (ReplyPostId === 0) {
+                $('#postQuote_' + postId).remove();
+                return 0;
+            }
+            if ($("#postId_" + ReplyPostId).text() != 0) {
+                var quote = $("#postId_" + ReplyPostId).text().trim();
+                var reply = 'Posted by ' + user + '\n\n' + quote;
+                return reply;
+            } else {
+                return '';
+            }
         }
 
         vm.reply = function (id) {
-            vm.quote(id);
             vm.replyId = id;
         }
 
+        vm.selectedPostId = 0;
 
-        vm.scrollToReply = function (id, postId) {
+        vm.scrollToReply = function (id, postId, user) {
+            vm.selectedPostId = postId;
+            // set replypostId for use in addPost
             vm.reply(postId);
+            // set reply text to show user
+            vm.replyCheat = vm.quote(postId, postId, user);
+
+            // scrolling
             var old = $location.hash();
             $location.hash(id);
             $anchorScroll();
@@ -79,36 +90,47 @@
             $location.hash(old);
         };
 
-        // Get offset for posts in thread
-        vm.getOffset = function(post){
-            var parentPost = getParent(post);
-            var offsetCounter = 1;
-            while (parentPost.ReplyPostId != 0) {
-                offsetCounter++;
-                for (var i = 0; i < vm.forumPosts.length; i++) {
-                    if (vm.forumPosts[i].Id === parentPost.ReplyPostId) {
-                        parentPost = vm.forumPosts[i];
-                    }
-                }
-            }
-            if (offsetCounter > 6) {
-                return offsetCounter * 10;
-            }
-            return offsetCounter * 10;
-        };
-
-        var getParent = function (post) {
-            var parentPost = {
-                    ReplyPostId: 0
-            }
-            for (var i = 0; i < vm.forumPosts.length ; i++) {
-                console.log(vm.forumPosts[i].Id + ': ' + vm.forumPosts[i].ReplyPostId)
-                if (vm.forumPosts[i].Id === post.ReplyPostId) {
-                    parentPost = vm.forumPosts[i];
-                    return parentPost;
-                }
-            }
-            return parentPost;
+        vm.removeReply = function () {
+            vm.reply(0);
+            vm.replyCheat = '';
         }
+
+        vm.slide = function (id) {
+            $("#postQuote_" + id).slideToggle();
+        }
+
+        //        Might not use - doesnt look good and has really bad performance, gets triggered on every keydown in form
+        //
+        // Get offset for posts in thread
+        //vm.getOffset = function (post) {
+        //        var parentPost = getParent(post);
+        //        var offsetCounter = 1;
+        //        while (parentPost.ReplyPostId != 0) {
+        //            offsetCounter++;
+        //            for (var i = 0; i < vm.forumPosts.length; i++) {
+        //                if (vm.forumPosts[i].Id === parentPost.ReplyPostId) {
+        //                    parentPost = vm.forumPosts[i];
+        //                }
+        //            }
+        //        }
+        //        if (offsetCounter > 6) {
+        //            return offsetCounter * 10;
+        //        }
+        //        return offsetCounter * 10;
+        //};
+        //
+        //var getParent = function (post) {
+        //    var parentPost = {
+        //        ReplyPostId: 0
+        //    }
+        //    for (var i = 0; i < vm.forumPosts.length ; i++) {
+        //        console.log(vm.forumPosts[i].Id + ': ' + vm.forumPosts[i].ReplyPostId)
+        //        if (vm.forumPosts[i].Id === post.ReplyPostId) {
+        //            parentPost = vm.forumPosts[i];
+        //            return parentPost;
+        //        }
+        //    }
+        //    return parentPost;
+        //}
     });
 }());

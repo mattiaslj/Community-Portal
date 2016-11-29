@@ -5,30 +5,36 @@
 
 <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
 <div ng-repeat="post in forumPosts">
-    <div ng-if="post.ReplyPostId == 0" >
+    <div>
+        <!--ng-if="post.ReplyPostId == 0"-->
         <table class="table table-bordered" id="tableId_{{post.Id}}">
             <tbody>
                 <tr class="row">
-                    <td style="word-break:break-all" class="col-sm-3">
-                        <p>{{post.User.UserName}}</p>
+                    <td style="word-break:break-all" class="col-sm-2">
+                        <p>{{post.User.UserName}}  -  Post {{post.Id}}</p>
                         <img src="http://lorempixel.com/50/50/1" />
                         <p>{{post.PostTime}}</p>
                     </td>
-                    <td style="word-break:break-all">
+                    <td>
                         <div>
-                            <p id="postId_{{post.Id}}">
+                            <button id="showButton" ng-click="vm.slide(post.Id)">show/hide</button>
+                            <pre id="postQuote_{{post.Id}}">
+                                {{vm.quote(post.ReplyPostId, post.Id, post.User.UserName)}}
+                            </pre>
+                            <p id="postId_{{post.Id}}" style="white-space: pre-line;">
                                 {{post.Body}}
                             </p>
+
                             <hr />
-                            <button ng-click="vm.scrollToReply('postForm',post.Id)" class="btn btn-sm">Reply</button>
+                            <button ng-click="vm.scrollToReply('postForm',post.Id, post.User.UserName)" class="btn btn-sm">Reply</button>
                         </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div ng-if="post.ReplyPostId != 0">
-        <table class="table table-bordered" style="margin-left:{{vm.getOffset(post)}}px" id="tableId_{{post.Id}}">
+    <!--<div ng-if="post.ReplyPostId != 0">
+        <table class="table table-bordered" style="margin-left:{{vm.getOffset(post, $index)}}px" id="tableId_{{post.Id}}">
             <tbody>
                 <tr class="row">
                     <td style="word-break:break-all" class="col-sm-3">
@@ -47,16 +53,22 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
 </div>
+<ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
 
-<div class="container">
-    <hr />
-    <div ng-form="newPostForm" id="postForm">
-        <label>Reply to thread</label>
-        <textarea id="postTextArea" rows="8" class="form-control" ng-model="vm.body" maxlength="5000" required style="margin-right:0px;" />
-        <a href="#/forum/:{{vm.threadTitle}}/:{{vm.threadId}}">
-            <input type="submit" class="btn btn-sm btn-success" value="submit" ng-click="vm.createPost()" />
-        </a>
+<div class="row col-md-12">
+    <pre>{{vm.replyCheat}}</pre>
+</div>
+<div>
+    <div ng-controller="test">
+        <div ng-form="newPostForm" id="postForm">
+            <textarea id="postTextArea" rows="8" class="form-control" ng-model="vm.body" maxlength="5000" required style="margin-right:0px;" />
+            <a href="#/forum/:{{vm.threadTitle}}/:{{vm.threadId}}">
+                <input type="submit" class="btn btn-sm btn-success" value="submit" ng-click="vm.createPost()" />
+            </a>
+            <button ng-click="vm.removeReply()" class="btn btn-warning btn-sm">Dont reply</button>
+        </div>
+
     </div>
 </div>
