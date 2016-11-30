@@ -17,16 +17,18 @@
                     </td>
                     <td>
                         <div>
-                            <button id="showButton" ng-click="vm.slide(post.Id)">show/hide</button>
-                            <pre id="postQuote_{{post.Id}}">
+                            <button id="showButton_{{post.Id}}" ng-click="vm.slide(post.Id)">show/hide</button>
+                            <pre id="postQuote_{{post.Id}}"> <!--style="display: none;"-->
                                 {{vm.quote(post.ReplyPostId, post.Id, post.User.UserName)}}
                             </pre>
                             <p id="postId_{{post.Id}}" style="white-space: pre-line;">
                                 {{post.Body}}
                             </p>
-
-                            <hr />
-                            <button ng-click="vm.scrollToReply('postForm',post.Id, post.User.UserName)" class="btn btn-sm">Reply</button>
+                            <!-- User must have a role to be able to reply -->
+                            <div ng-if="vm.userRole === 'Admin' || vm.userRole === 'Moderator' || vm.userRole === 'User'">
+                                <hr />
+                                <button ng-click="vm.scrollToReply('postForm',post.Id, post.User.UserName)" class="btn btn-sm">Reply</button>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -56,12 +58,11 @@
     </div>-->
 </div>
 <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
-
-<div class="row col-md-12">
-    <pre>{{vm.replyCheat}}</pre>
-</div>
-<div>
-    <div ng-controller="test">
+<div ng-if="vm.userRole === 'Admin' || vm.userRole === 'Moderator' || vm.userRole === 'User'">
+    <div class="row col-md-12">
+        <pre>{{vm.replyCheat}}</pre>
+    </div>
+    <div>
         <div ng-form="newPostForm" id="postForm">
             <textarea id="postTextArea" rows="8" class="form-control" ng-model="vm.body" maxlength="5000" required style="margin-right:0px;" />
             <a href="#/forum/:{{vm.threadTitle}}/:{{vm.threadId}}">
@@ -69,6 +70,5 @@
             </a>
             <button ng-click="vm.removeReply()" class="btn btn-warning btn-sm">Dont reply</button>
         </div>
-
     </div>
 </div>

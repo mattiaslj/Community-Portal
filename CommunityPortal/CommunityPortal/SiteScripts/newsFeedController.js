@@ -4,7 +4,7 @@
     var app = angular.module("communityPortal");
 
 
-    app.controller("newsFeedController", function ($http, $route, $scope) {
+    app.controller("newsFeedController", function ($http, $route, $scope, authentication) {
 
         var vm = this;
         $scope.events = [];
@@ -15,6 +15,12 @@
         //vm.role = '';
         vm.showEvents = true;
         vm.numberOfEventsToDisplay = 6;
+
+        // Get userRole
+        authentication.getUserRole()
+                      .then(function (data) {
+                          vm.userRole = data;
+                      })
 
         //  Get all events from database
         $http({
@@ -79,7 +85,7 @@
             }).then(function (data) {
                 $route.reload();
             })
-            
+
         }
 
         // Delete Event
@@ -91,7 +97,7 @@
             }).then(function (data) {
                 $route.reload();
             })
-            
+
         }
 
         // Edit Event

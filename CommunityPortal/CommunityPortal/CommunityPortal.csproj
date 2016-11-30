@@ -205,6 +205,14 @@
     <Compile Include="Migrations\201611250821403_AddedReplyPostIdToForumPost.Designer.cs">
       <DependentUpon>201611250821403_AddedReplyPostIdToForumPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611300815066_AddedModeratorToSeed.cs" />
+    <Compile Include="Migrations\201611300815066_AddedModeratorToSeed.Designer.cs">
+      <DependentUpon>201611300815066_AddedModeratorToSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611300924167_AddedUserToSeed.cs" />
+    <Compile Include="Migrations\201611300924167_AddedUserToSeed.Designer.cs">
+      <DependentUpon>201611300924167_AddedUserToSeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -1116,6 +1124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611250821403_AddedReplyPostIdToForumPost.resx">
       <DependentUpon>201611250821403_AddedReplyPostIdToForumPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300815066_AddedModeratorToSeed.resx">
+      <DependentUpon>201611300815066_AddedModeratorToSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611300924167_AddedUserToSeed.resx">
+      <DependentUpon>201611300924167_AddedUserToSeed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

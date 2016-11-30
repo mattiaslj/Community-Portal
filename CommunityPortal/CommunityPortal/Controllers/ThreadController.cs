@@ -39,6 +39,7 @@ namespace CommunityPortal.Controllers
             }
         }
 
+        [Authorize]
         public JsonResult AddThread(ForumThread forumThread, string username)
         {
             using (var _db = new ApplicationDbContext())
@@ -55,7 +56,6 @@ namespace CommunityPortal.Controllers
                     _db.SaveChanges();
                     return Json(forumThread.Id);
                 }
-
                 return Json("Couldnt add thread");
             }
         }

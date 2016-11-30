@@ -15,17 +15,25 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Community Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#/newsFeed">News</a></li>
-                    <li><a href="#/forum">Forum</a></li>
-                </ul>
+                 @* Show forum and newsfeed only if in HomeController *@
+                @if (ViewContext.RouteData.Values["Controller"].ToString() == "Home") 
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a href="#/newsFeed">News</a></li>
+                        <li><a href="#/forum">Forum</a></li>
+                    </ul>
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+    {
+        
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />

@@ -14,6 +14,14 @@
         var threadTitle = $routeParams.threadTitle;
         vm.threadTitle = threadTitle.replace(':', '');
 
+        // Get userRole
+        authentication.getUserRole()
+                      .then(function (data) {
+                          vm.userRole = data;
+                          console.log(vm.userRole);
+                      })
+        console.log(vm.userRole);
+
         //Get all threads and add pagination
         vm.forumPosts = [];
         forumPost.getPosts(vm.threadId)
@@ -58,6 +66,8 @@
         vm.quote = function (ReplyPostId, postId, user) {
             if (ReplyPostId === 0) {
                 $('#postQuote_' + postId).remove();
+                $('#showButton_' + postId).remove();
+
                 return 0;
             }
             if ($("#postId_" + ReplyPostId).text() != 0) {

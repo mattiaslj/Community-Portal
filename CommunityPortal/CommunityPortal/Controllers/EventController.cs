@@ -35,7 +35,7 @@ namespace CommunityPortal.Controllers
             return Json("");
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost]
         public JsonResult AddEvent(Event newEvent)
         {
@@ -65,7 +65,7 @@ namespace CommunityPortal.Controllers
             return Json("");
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         [HttpPost]
         public JsonResult DeleteEvent(string id)
         {
@@ -83,16 +83,5 @@ namespace CommunityPortal.Controllers
             return Json("");
         }
 
-        //[Authorize(Roles = "Admin")]
-        //public JsonResult GetRole()
-        //{
-        //    using (var _db = new ApplicationDbContext())
-        //    {
-        //        string role = "not admin";
-        //        if (User.IsInRole("Admin"))
-        //            role = "Admin";
-        //        return Json(role, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
     }
 }

@@ -1,24 +1,41 @@
-﻿using CommunityPortal.Models;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace CommunityPortal.Controllers
 {
+
     public class AngularAuthenticationController : Controller
     {
-        // GET: AngularAuthentication
+        [Authorize]
         public JsonResult GetCurrentUser()
         {
-            using (var _db = new ApplicationDbContext())
-            {
-                var currentUser = User.Identity;
+            var currentUser = User.Identity;
 
-                if (currentUser != null)
-                {
-                    return Json(currentUser.Name, JsonRequestBehavior.AllowGet);
-                }
+            if (currentUser != null)
+            {
+                return Json(currentUser.Name, JsonRequestBehavior.AllowGet);
             }
 
             return Json("No current user...");
+        }
+
+        public JsonResult GetUserRole()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return Json("Admin", JsonRequestBehavior.AllowGet);
+            }
+
+            if (User.IsInRole("Moderator"))
+            {
+                return Json("Moderator", JsonRequestBehavior.AllowGet);
+            }
+
+            if (User.IsInRole("User"))
+            {
+                return Json("User", JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("No Role", JsonRequestBehavior.AllowGet);
         }
     }
 }

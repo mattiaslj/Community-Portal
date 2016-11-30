@@ -79,6 +79,7 @@ namespace CommunityPortal.Controllers
             return Json("no posts or no thread");
         }
 
+        [Authorize]
         public JsonResult AddPost(ForumPost forumPost, string threadId, string username)
         {
             int result;
@@ -102,7 +103,6 @@ namespace CommunityPortal.Controllers
                     }
                 }
             }
-
             return Json("Something went wrong");
         }
     }

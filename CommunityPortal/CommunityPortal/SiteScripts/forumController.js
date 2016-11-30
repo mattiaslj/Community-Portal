@@ -12,6 +12,14 @@
         vm.title = '';
         vm.body = '';
 
+        // Get userRole
+        authentication.getUserRole()
+                      .then(function (data) {
+                          vm.userRole = data;
+                          console.log(vm.userRole);
+                      })
+        console.log(vm.userRole);
+
         //Get all threads and add pagination
         vm.forumThreads = {};
         forumThread.getThreads()

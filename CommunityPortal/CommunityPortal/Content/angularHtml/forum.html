@@ -4,9 +4,11 @@
 
 <div class="container" ng-hide="vm.showCreateThread">
     <hr />
-    <button ng-click="vm.showCreateThread = !vm.showCreateThread" class="btn btn-group-lg">Create Thread</button>
-    <hr />
-
+    <!-- User must have a role and be logged in to be able to create a thread -->
+    <div ng-if="vm.userRole === 'Admin' || vm.userRole === 'Moderator' || vm.userRole === 'User'">
+        <button ng-click="vm.showCreateThread = !vm.showCreateThread" class="btn btn-group-lg">Create Thread</button>
+        <hr />
+    </div>
     <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
     <table class="table table-striped table-bordered">
         <tr>
@@ -14,7 +16,7 @@
             <th>User</th>
             <th>PostTime</th>
         </tr>
-        
+
         <tr ng-repeat="thread in forumThreads">
             <td><a href="#/forum/:{{thread.Title}}/:{{thread.Id}}"> {{thread.Title}} </a></td>
             <td>{{thread.User.UserName}}</td>

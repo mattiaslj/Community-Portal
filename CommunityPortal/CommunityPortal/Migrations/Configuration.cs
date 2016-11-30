@@ -29,6 +29,36 @@ namespace CommunityPortal.Migrations
                 roleManager.Create(new IdentityRole { Name = "Admin" });
                 manager.AddToRole(user.Id, "Admin");
             }
+
+            if (!context.Users.Any(u => u.UserName == "Mod@Mod.Mod"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "Mod@Mod.Mod" };
+
+                manager.Create(user, "password");
+
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                roleManager.Create(new IdentityRole { Name = "Moderator" });
+                manager.AddToRole(user.Id, "Moderator");
+            }
+
+            if (!context.Users.Any(u => u.UserName == "User@User.User"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "User@User.User" };
+
+                manager.Create(user, "password");
+
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                roleManager.Create(new IdentityRole { Name = "User" });
+                manager.AddToRole(user.Id, "User");
+            }
         }
 
 
