@@ -27,7 +27,10 @@
                             <!-- User must have a role to be able to reply -->
                             <div ng-if="vm.userRole === 'Admin' || vm.userRole === 'Moderator' || vm.userRole === 'User'">
                                 <hr />
-                                <button ng-click="vm.scrollToReply('postForm',post.Id, post.User.UserName)" class="btn btn-sm">Reply</button>
+                                <button ng-click="vm.scrollToReply('postForm',post.Id, post.User.UserName)" class="btn btn-sm btn-success">Reply</button>
+                                <div ng-if="vm.userRole === 'Admin' || vm.userRole === 'Moderator'">
+                                    <button ng-click="vm.deletepost(post)" class="btn btn-sm btn-danger">Delete</button>
+                                </div>
                             </div>
                         </div>
                     </td>

@@ -59,5 +59,27 @@ namespace CommunityPortal.Controllers
                 return Json("Couldnt add thread");
             }
         }
+
+        [Authorize(Roles = "Admin, Moderator")]
+        [HttpPost]
+        public JsonResult DeleteThread(string Id)
+        {
+            int result;
+            int.TryParse(Id, out result);
+
+            using (var _db = new ApplicationDbContext())
+            {
+                var thread = _db.ForumThreads.FirstOrDefault(t => t.Id == result);
+
+                if (thread != null)
+                {
+                    _db.ForumThreads.Remove(thread);
+                    _db.SaveChanges();
+                    return Json("Successfully removed thread");
+                }
+
+                return Json("Something went wrong");
+            }
+        }
     }
 }

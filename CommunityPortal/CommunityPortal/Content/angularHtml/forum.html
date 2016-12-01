@@ -20,10 +20,13 @@
         <tr ng-repeat="thread in forumThreads">
             <td><a href="#/forum/:{{thread.Title}}/:{{thread.Id}}"> {{thread.Title}} </a></td>
             <td>{{thread.User.UserName}}</td>
-            <td>{{thread.PostTime}}</td>
+            <td>{{thread.PostTime}}
+            <p ng-if="vm.userRole === 'Admin' || vm.userRole === 'Moderator'">
+                <a href="#/forum" ng-click="vm.deleteThread(thread)"> delete thread </a>
+            </p>
+            </td>
         </tr>
     </table>
-
 </div>
 
 <div class="container" ng-show="vm.showCreateThread">

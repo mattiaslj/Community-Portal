@@ -18,9 +18,17 @@
                             return response.data;
                         });
         };
+
+        this.getUsers = function () {
+            return $http.get('AngularAuthentication/GetUsers')
+                        .then(function (response) {
+                            return response.data;
+                        });
+        }
         return {
             getCurrentUser: this.getCurrentUser,
-            getUserRole: this.getUserRole
+            getUserRole: this.getUserRole,
+            getUsers: this.getUsers
         }
     })
 

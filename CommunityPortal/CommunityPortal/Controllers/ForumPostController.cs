@@ -55,20 +55,29 @@ namespace CommunityPortal.Controllers
                             if (posts[i].ReplyPostId != 0)
                             {   // get parent post
                                 var parentPost = posts.FirstOrDefault(p => p.Id == posts[i].ReplyPostId);
-                                // get index of parent post
-                                var index = posts.IndexOf(parentPost);
-                                // save reply
-                                var temp = posts[i];
-                                // remove reply from postsList
-                                posts.Remove(posts[i]);
-                                // add reply to list again
-                                if (index + 1 > posts.Count)
+                                // if parentPost has been removed,
+                                // remove reference and leave at current index
+                                if (parentPost == null)
                                 {
-                                    posts.Add(temp);
+                                    posts[i].ReplyPostId = 0;
                                 }
                                 else
                                 {
-                                    posts.Insert(index + 1, temp);
+                                    // get index of parent post
+                                    var index = posts.IndexOf(parentPost);
+                                    // save reply
+                                    var temp = posts[i];
+                                    // remove reply from postsList
+                                    posts.Remove(posts[i]);
+                                    // add reply to list again
+                                    if (index + 1 > posts.Count)
+                                    {
+                                        posts.Add(temp);
+                                    }
+                                    else
+                                    {
+                                        posts.Insert(index + 1, temp);
+                                    }
                                 }
                             }
                         }
@@ -105,5 +114,48 @@ namespace CommunityPortal.Controllers
             }
             return Json("Something went wrong");
         }
+
+        [Authorize(Roles = "Admin, Moderator")]
+        [HttpPost]
+        public JsonResult DeletePost(string Id)
+        {
+            int result;
+            int.TryParse(Id, out result);
+
+            using (var _db = new ApplicationDbContext())
+            {
+                var post = _db.ForumPosts.FirstOrDefault(p => p.Id == result);
+
+                if (post != null)
+                {
+                    post.ReplyPostId = 0;
+                    post.Thread = null;
+
+                    _db.ForumPosts.Remove(post);
+                    _db.SaveChanges();
+
+                    return Json("Success");
+                }
+                return Json("Something went wrong");
+            }
+        }
+
+        //[Authorize]
+        //[HttpPost]
+        //public JsonResult EditPost(string Id)
+        //{
+        //    int result;
+        //    int.TryParse(Id, out result);
+
+        //    using(var _db = new ApplicationDbContext())
+        //    {
+        //        var post = _db.ForumPosts.FirstOrDefault(p => p.Id == result);
+
+        //        if(post != null)
+        //        {
+
+        //        }
+        //    }
+        //}
     }
 }

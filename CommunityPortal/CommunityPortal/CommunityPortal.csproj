@@ -228,6 +228,7 @@
   <ItemGroup>
     <Content Include="Content\angularHtml\forum.html" />
     <Content Include="Content\angularHtml\thread.html" />
+    <Content Include="Content\angularHtml\userPage.html" />
     <Content Include="Content\simplex-bootstrap.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Scripts\angular-animate.js" />
@@ -1055,6 +1056,7 @@
     </Content>
     <Content Include="SiteScripts\threadController.js" />
     <Content Include="ProjectPlan.txt" />
+    <Content Include="SiteScripts\userPageController.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

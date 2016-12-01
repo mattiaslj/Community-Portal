@@ -19,6 +19,10 @@
                 templateUrl: "Content/angularHtml/thread.html",
                 controller: "threadController as vm"
             })
+            .when("/user/:userName", {
+                templateUrl: "Content/angularHtml/userPage.html",
+                controller: "userPageController as vm"
+            })
             .otherwise({ redirectTo: '/newsFeed' });
     });
 

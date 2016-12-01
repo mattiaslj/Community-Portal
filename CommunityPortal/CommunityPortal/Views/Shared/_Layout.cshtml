@@ -18,12 +18,13 @@
                 @Html.ActionLink("Community Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                 @* Show forum and newsfeed only if in HomeController *@
+                 @* Show only if in HomeController *@
                 @if (ViewContext.RouteData.Values["Controller"].ToString() == "Home") 
                 {
                     <ul class="nav navbar-nav">
                         <li><a href="#/newsFeed">News</a></li>
                         <li><a href="#/forum">Forum</a></li>
+                        <li><a href="#/user/:@User.Identity.Name">User Page</a></li>
                     </ul>
                 }
                 @Html.Partial("_LoginPartial")

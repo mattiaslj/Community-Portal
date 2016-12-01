@@ -65,6 +65,7 @@ namespace CommunityPortal.Controllers
             return Json("");
         }
 
+
         [Authorize(Roles = "Admin, Moderator")]
         [HttpPost]
         public JsonResult DeleteEvent(string id)

@@ -25,11 +25,20 @@
                         });
         };
 
+        this.deleteThread = function (forumthread) {
+            console.log("threadId: " + forumthread)
+            return $http.post('Thread/DeleteThread', forumthread)
+                        .then(function (response) {
+                            return response.data;
+                        });
+        };
+
 
         return {
             getThreads: this.getThreads,
             getThread: this.getThread,
-            addThread: this.addThread
+            addThread: this.addThread,
+            deleteThread: this.deleteThread
         }
     });
 }());

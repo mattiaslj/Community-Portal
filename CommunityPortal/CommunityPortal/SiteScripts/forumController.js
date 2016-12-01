@@ -16,9 +16,7 @@
         authentication.getUserRole()
                       .then(function (data) {
                           vm.userRole = data;
-                          console.log(vm.userRole);
                       })
-        console.log(vm.userRole);
 
         //Get all threads and add pagination
         vm.forumThreads = {};
@@ -78,6 +76,12 @@
                               
                           })
             
+        }
+
+        vm.deleteThread = function (forumthread) {
+            forumThread.deleteThread(forumthread).then(function (data) {
+                $route.reload();
+            })
         }
     })
 

@@ -22,7 +22,7 @@
                       })
         console.log(vm.userRole);
 
-        //Get all threads and add pagination
+        //Get all posts and add pagination
         vm.forumPosts = [];
         forumPost.getPosts(vm.threadId)
                    .then(function (data) {
@@ -62,6 +62,13 @@
                               })
                           })
         }
+
+        vm.deletepost = function (post) {
+            forumPost.deletePost(post).then(function (data) {
+                console.log(data);
+                $route.reload();
+            })
+        };
 
         vm.quote = function (ReplyPostId, postId, user) {
             if (ReplyPostId === 0) {

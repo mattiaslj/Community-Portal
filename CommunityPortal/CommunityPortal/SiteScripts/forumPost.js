@@ -19,10 +19,18 @@
                         });
         }
 
+        this.deletePost = function (post) {
+            return $http.post('ForumPost/DeletePost', post)
+                        .then(function (response) {
+                            return response.data;
+                        });
+        }
+
 
         return {
             getPosts: this.getPosts,
-            addPost: this.addPost
+            addPost: this.addPost,
+            deletePost: this.deletePost
         }
     });
 

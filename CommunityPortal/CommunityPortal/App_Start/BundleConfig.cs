@@ -24,7 +24,8 @@ namespace CommunityPortal
                     "~/SiteScripts/forumThread.js",
                     "~/SiteScripts/authentication.js",
                     "~/SiteScripts/forumPost.js",
-                    "~/SiteScripts/threadController.js"
+                    "~/SiteScripts/threadController.js",
+                    "~/SiteScripts/userPageController.js"
                 ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
