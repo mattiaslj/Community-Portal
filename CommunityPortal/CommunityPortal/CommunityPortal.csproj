@@ -169,6 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AngularAuthenticationController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\ForumPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -212,6 +213,10 @@
     <Compile Include="Migrations\201611300924167_AddedUserToSeed.cs" />
     <Compile Include="Migrations\201611300924167_AddedUserToSeed.Designer.cs">
       <DependentUpon>201611300924167_AddedUserToSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612051051473_test.cs" />
+    <Compile Include="Migrations\201612051051473_test.Designer.cs">
+      <DependentUpon>201612051051473_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1005,6 +1010,7 @@
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
     <Content Include="SiteScripts\app.js" />
     <Content Include="SiteScripts\authentication.js" />
+    <Content Include="SiteScripts\chat.js" />
     <Content Include="SiteScripts\forumController.js" />
     <Content Include="SiteScripts\forumPost.js" />
     <Content Include="SiteScripts\forumThread.js" />
@@ -1094,6 +1100,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AngularAuthentication\" />
+    <Folder Include="Views\Chat\" />
     <Folder Include="Views\Event\" />
     <Folder Include="Views\ForumPost\" />
     <Folder Include="Views\Thread\" />
@@ -1132,6 +1139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611300924167_AddedUserToSeed.resx">
       <DependentUpon>201611300924167_AddedUserToSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612051051473_test.resx">
+      <DependentUpon>201612051051473_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

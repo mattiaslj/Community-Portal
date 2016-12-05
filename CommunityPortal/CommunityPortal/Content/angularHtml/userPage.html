@@ -1,6 +1,32 @@
 ﻿
 <h1> {{vm.userName}} </h1>
+<div class="container">
+        <!-- user list -->
+    <div class="row col-sm-offset-8 col-sm-4">
+        <ul uib-pagination total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="user in users" ng-model="user.UserName">
+                <a href="#/user/:{{user.UserName}}">
+                    {{user.UserName}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Actions -->
+    <div class="container col-sm-6">
+        <div class="row">
+            <select size="5">
+                <option ng-repeat="message in vm.messages">
+                    {{message.Message}}
+                </option>
+            </select>
+            <div ng-form="chatForm" id="chatForm">
+                <textarea id="chatTextArea" class="form-control" ng-model="vm.message" maxlength="2000" required />
+                <input type="submit" class="btn btn-sm btn-success" value="submit" ng-click="vm.sendMessage()" />
+            </div>
+        </div>
+    </div>
+</div>
 
 
-<h2>Select a user to view</h2>
 
