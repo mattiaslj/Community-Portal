@@ -175,6 +175,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,12 +215,13 @@
     <Compile Include="Migrations\201611300924167_AddedUserToSeed.Designer.cs">
       <DependentUpon>201611300924167_AddedUserToSeed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612051051473_test.cs" />
-    <Compile Include="Migrations\201612051051473_test.Designer.cs">
-      <DependentUpon>201612051051473_test.cs</DependentUpon>
+    <Compile Include="Migrations\201612080848039_chatmessages.cs" />
+    <Compile Include="Migrations\201612080848039_chatmessages.Designer.cs">
+      <DependentUpon>201612080848039_chatmessages.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\ForumPost.cs" />
     <Compile Include="Models\ForumPostViewModel.cs" />
@@ -1096,6 +1098,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
+    <Content Include="Views\Shared\UserView.cshtml" />
+    <Content Include="Views\Shared\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1140,8 +1145,8 @@
     <EmbeddedResource Include="Migrations\201611300924167_AddedUserToSeed.resx">
       <DependentUpon>201611300924167_AddedUserToSeed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612051051473_test.resx">
-      <DependentUpon>201612051051473_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612080848039_chatmessages.resx">
+      <DependentUpon>201612080848039_chatmessages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

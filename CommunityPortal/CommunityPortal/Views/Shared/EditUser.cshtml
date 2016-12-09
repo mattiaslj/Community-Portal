@@ -1,0 +1,19 @@
+﻿@model CommunityPortal.Models.ApplicationUser
+
+
+<div class="form-group">
+    @using (Html.BeginForm("EditUser", "UserManagement", new { name = Model.UserName }, FormMethod.Post))
+    {
+        <p>City</p>
+        <input type="text" class="form-control" name="city" value="@Model.City"/>
+
+        <p>Country</p>
+        <input type="text" class="form-control" name="country" value="@Model.Country"/>
+
+        <p>Image</p>
+        <input type="text" class="form-control" name="image"value="@Model.Image"/>
+
+        <input type="submit" class="btn btn-sm btn-success" />
+    }
+    </div>
+    

@@ -1,4 +1,4 @@
-﻿(function(){
+﻿(function () {
     'use strict'
 
     var app = angular.module('communityPortal');
@@ -12,10 +12,17 @@
                 });
         };
 
+        this.addMessage = function (currentUser, receiver, message) {
+            return $http.post('Chat/AddMessage', { currentUser, receiver, message })
+                .then(function (data) {
+                    return data;
+                });
+        };
+
         return {
-            getMessages: this.getMessages
+            getMessages: this.getMessages,
+            addMessage: this.addMessage
         };
     });
 
 }());
-   

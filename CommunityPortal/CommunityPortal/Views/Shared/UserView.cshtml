@@ -1,0 +1,36 @@
+﻿@model CommunityPortal.Models.ApplicationUser
+
+<h3>@ViewBag.error</h3>
+
+@if (Model != null)
+{
+
+    <img src="@Model.Image" alt="image" />
+    <ul class="list-group">
+        <li class="list-group-item">
+            <p>Username</p>
+            <p>@Model.UserName</p>
+        </li>
+        <li class="list-group-item">
+            <p>Country</p>
+            @Model.Country
+        </li>
+        <li class="list-group-item">
+            <p>City</p>
+            @Model.City
+        </li>
+    </ul>
+
+    if (User.Identity.Name == Model.UserName || User.IsInRole("Admin"))
+    {
+        @Ajax.ActionLink("Edit", "EditUser", "UserManagement", new { name = Model.UserName },
+                                            new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "content" }
+                                            , new { @class = "btn btn-sm btn-success" })
+
+        @Html.ActionLink("Lock Account", "LockUser", "UserManagement", new { name = Model.UserName }, new { @class = "btn btn-sm btn-danger" })
+    }
+}
+else
+{
+    <h1>Uh oh</h1>
+}

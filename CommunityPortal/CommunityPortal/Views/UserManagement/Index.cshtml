@@ -1,0 +1,19 @@
+﻿@model List<CommunityPortal.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@* contains user information *@
+<div id="content" class="col-sm-8 container">
+
+</div>
+
+<ul class="col-sm-4">
+    @foreach (var user in Model)
+    {
+        <li> @Ajax.ActionLink(user.UserName, "ShowUser", "UserManagement", new { name = user.UserName }
+            , new AjaxOptions{ UpdateTargetId = "content", InsertionMode = InsertionMode.Replace}) </li>
+    }
+</ul>

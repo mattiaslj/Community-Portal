@@ -24,7 +24,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#/newsFeed">News</a></li>
                         <li><a href="#/forum">Forum</a></li>
-                        <li><a href="#/user/:@User.Identity.Name">User Page</a></li>
+                        <li><a href="#/user/:">Chat</a></li>
                     </ul>
                 }
                 @Html.Partial("_LoginPartial")
@@ -37,8 +37,9 @@
     }
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
+        
+        <footer class="navbar-fixed-bottom text-center">
+            <hr />
             <p>&copy; @DateTime.Now.Year - Community Portal</p>
         </footer>
     </div>

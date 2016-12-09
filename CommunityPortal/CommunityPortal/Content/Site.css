@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -35,4 +35,11 @@ span{
 
 pre{
     font-size: 14px;
+}
+
+#chatBox{
+    height: 500px;
+    word-wrap: break-word;
+    overflow-x: auto;
+    border: solid;
 }
