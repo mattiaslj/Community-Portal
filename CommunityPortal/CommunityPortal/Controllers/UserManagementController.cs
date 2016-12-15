@@ -1,4 +1,5 @@
 ﻿using CommunityPortal.Models;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -98,6 +99,8 @@ namespace CommunityPortal.Controllers
 
                 // TODO: make lockout permanent and add more lockout options
                 user.LockoutEnabled = true;
+                user.LockoutEndDateUtc = DateTime.UtcNow.AddDays(365 * 200);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }

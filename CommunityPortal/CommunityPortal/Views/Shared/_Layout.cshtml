@@ -27,14 +27,17 @@
                         <li><a href="#/user/:">Chat</a></li>
                     </ul>
                 }
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Userpage", "Index", "UserManagement")</li>
+                    </ul>
+                }
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-    {
-        
-    }
     <div class="container body-content">
         @RenderBody()
         
